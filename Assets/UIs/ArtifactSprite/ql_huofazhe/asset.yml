@@ -1,0 +1,9 @@
+AssetType: video
+VideoParam:
+  VideoName: video.webm
+  Size:
+    X: 1520
+    Y: 856
+  Position:
+    X: 0
+    Y: 50
