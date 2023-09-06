@@ -1024,8 +1024,8 @@ MonoBehaviour:
   moveDistance: 660
   fishObject: {fileID: 744070538}
   imageObject: {fileID: 1197265110}
-  minX: 400
-  maxX: 1500
+  minX: 500
+  maxX: 1400
   stopButton: {fileID: 602313856}
   resetButton: {fileID: 55339015}
   pauseButton: {fileID: 1371906180}

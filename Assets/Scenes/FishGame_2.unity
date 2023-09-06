@@ -474,9 +474,9 @@ MonoBehaviour:
   pointerObject: {fileID: 755073885}
   safeObject: {fileID: 1235418059}
   moveDistanceRight: 35
-  moveDistanceLeft: 7
-  continuousClickTime: 0.2
-  continuousMoveTime: 0.1
+  moveDistanceLeft: 1
+  continuousClickTime: 0.1
+  continuousMoveTime: 0.01
   minMoveCount: 1
   maxMoveCount: 3
   stopLeftPosition: -1
