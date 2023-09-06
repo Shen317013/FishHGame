@@ -375,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &239889517
 RectTransform:
   m_ObjectHideFlags: 0
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 844359037}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScrollWithButtons, Assembly-CSharp
         m_MethodName: ScrollToRight
         m_Mode: 1
@@ -998,7 +998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &592555244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1214,7 +1214,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 844359036}
-  - component: {fileID: 844359037}
   m_Layer: 5
   m_Name: ScrollManager
   m_TagString: Untagged
@@ -1242,23 +1241,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &844359037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844359035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1b51c0fb161ad4459f037fd54f20d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollRect: {fileID: 1769879130}
-  leftButton: {fileID: 896357093}
-  rightButton: {fileID: 239889518}
-  scrollDistance: 1000
-  smoothTime: 0.2
 --- !u!1 &896357091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &896357092
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1342,7 +1324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 844359037}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScrollWithButtons, Assembly-CSharp
         m_MethodName: ScrollToLeft
         m_Mode: 1
@@ -2520,7 +2502,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769879129}
-  - component: {fileID: 1769879130}
   m_Layer: 5
   m_Name: Rolegroup
   m_TagString: Untagged
@@ -2553,36 +2534,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3000, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1769879130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769879128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Content: {fileID: 1769879129}
-  m_Horizontal: 1
-  m_Vertical: 0
-  m_MovementType: 1
-  m_Elasticity: 0.1
-  m_Inertia: 1
-  m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 754445432}
-  m_HorizontalScrollbar: {fileID: 0}
-  m_VerticalScrollbar: {fileID: 0}
-  m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
-  m_HorizontalScrollbarSpacing: 0
-  m_VerticalScrollbarSpacing: 0
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1784151088
 GameObject:
   m_ObjectHideFlags: 0
