@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 
 public class LevelDataLoad : MonoBehaviour
 {
@@ -12,18 +12,21 @@ public class LevelDataLoad : MonoBehaviour
     private int playerFish = 0;
     public float countdownTime = 0f; // 倒數計時
     private bool isGameOver = false; // 遊戲失敗判定
+    public GameObject Win;
 
     private void Start()
     {
+        // 從PlayerPrefs讀取魚的數量並更新
+        playerFish += PlayerPrefs.GetInt("PlayerFish", 0);
+
         string jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/LevelData.json");
         string json = File.ReadAllText(jsonFilePath);
 
         LevelData levelData = JsonUtility.FromJson<LevelData>(json);
 
-
         foreach (Level level in levelData.levels)
         {
-            //  判斷進去關卡是json的哪一關
+            // 判斷進去關卡是json的哪一關
             if (level.level == LevelManager.instance.golevel)
             {
                 // 設置關卡的倒數計時
@@ -32,9 +35,6 @@ public class LevelDataLoad : MonoBehaviour
 
                 // 獲取關卡需要捕的魚數量
                 int requiredFish = level.fish;
-
-                // 更新 playerFish 的值
-                playerFish = 0;
 
                 // 更新 playerfish 文本组件的值
                 playerFishText.text = playerFish.ToString();
@@ -73,6 +73,7 @@ public class LevelDataLoad : MonoBehaviour
     {
         isGameOver = true;
         Debug.Log("遊戲勝利");
+        Win.SetActive(true);
     }
 
     private void Failure()

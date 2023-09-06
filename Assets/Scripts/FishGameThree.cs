@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FishGameThree : MonoBehaviour
 {
@@ -87,6 +88,8 @@ public class FishGameThree : MonoBehaviour
                     {
                         //遊戲勝利邏輯
                         Debug.Log("遊戲勝利！");
+                        PlayerPrefs.SetInt("PlayerFish", PlayerPrefs.GetInt("PlayerFish", 0) + 1);
+                        SceneManager.LoadScene("FishingChoose");
                     }
                     else
                     {

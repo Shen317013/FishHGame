@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FishGameOne : MonoBehaviour
 {
@@ -106,6 +107,8 @@ public class FishGameOne : MonoBehaviour
             StopFishMovement();
             Debug.Log("遊戲勝利！");
             isCountdownPaused = true;
+            PlayerPrefs.SetInt("PlayerFish", PlayerPrefs.GetInt("PlayerFish", 0) + 1);
+            SceneManager.LoadScene("FishingChoose");
         }
         else
         {

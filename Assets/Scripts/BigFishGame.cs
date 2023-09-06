@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BigFishGame : MonoBehaviour
 {
@@ -139,6 +140,9 @@ public class BigFishGame : MonoBehaviour
 
         isGameActive = false;
         Debug.Log("遊戲勝利");
+
+        PlayerPrefs.SetInt("PlayerFish", PlayerPrefs.GetInt("PlayerFish", 0) + 5);
+        SceneManager.LoadScene("FishingChoose");
     }
 
     void GameLose()

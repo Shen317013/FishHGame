@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FishGameTwo : MonoBehaviour
 {
@@ -126,6 +127,9 @@ public class FishGameTwo : MonoBehaviour
         {
             Debug.Log("遊戲勝利!");
             // 在這裡處理遊戲勝利的邏輯
+
+            PlayerPrefs.SetInt("PlayerFish", PlayerPrefs.GetInt("PlayerFish", 0) + 1);
+            SceneManager.LoadScene("FishingChoose");
         }
         else
         {

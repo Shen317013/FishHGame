@@ -38,4 +38,9 @@ public class LobbyGameManager : MonoBehaviour
     {
         SceneManager.LoadScene("ChooseRole");
     }
+
+    public void ResetGame()
+    {
+        PlayerPrefs.SetInt("PlayerFish", 0);
+    }
 }
