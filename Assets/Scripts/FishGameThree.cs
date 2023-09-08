@@ -44,6 +44,9 @@ public class FishGameThree : MonoBehaviour
             return;
         }
 
+        // 隨機旋轉一次外框
+        RandomRotateParent();
+
         //儲存球體物件座標與旋轉角度
         initialChildLocalPosition = childObject.localPosition;
         initialChildLocalRotation = childObject.localRotation;
@@ -123,6 +126,11 @@ public class FishGameThree : MonoBehaviour
                 {
                     //如果未重疊 重置重疊時間
                     overlapTimer = 0f;
+                }
+
+                if (parentObject.transform.rotation.eulerAngles.z == 0f)
+                {
+                    StopChildRotation();
                 }
             }
 
@@ -291,6 +299,9 @@ public class FishGameThree : MonoBehaviour
         childRigidbody.constraints = RigidbodyConstraints2D.None;
         childRigidbody.gravityScale = 300f;
 
+        // 隨機旋轉一次外框
+        RandomRotateParent();
+
         //重置隨機外框旋轉時間
         currentRandomRotateWaitTime = Random.Range(2f, 5f);
 
@@ -318,4 +329,26 @@ public class FishGameThree : MonoBehaviour
             childRigidbody.gravityScale = 300f;
         }
     }
+
+    private void StopChildRotation()
+    {
+        // 获取 childObject 上的 Rigidbody2D 组件
+        Rigidbody2D childRigidbody = childObject.GetComponent<Rigidbody2D>();
+
+        // 停用 childObject 的旋转
+        childRigidbody.angularVelocity = 0f;
+    }
+
+    private void RandomRotateParent()
+    {
+        // 隨機選擇旋轉角度
+        int[] randomRotationOptions = { -4, -3, -2, 2, 3, 4 };  // 隨機的角度清單
+        int randomIndex = Random.Range(0, randomRotationOptions.Length);
+        int randomRotationZ = randomRotationOptions[randomIndex];
+
+        // 應用旋轉角度到外框
+        parentObject.transform.rotation = Quaternion.Euler(0f, 0f, randomRotationZ);
+    }
+
+
 }
