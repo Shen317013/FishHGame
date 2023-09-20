@@ -2,63 +2,201 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Spine.Unity;
+using UnityEngine.SceneManagement;
 
 public class HGame : MonoBehaviour
 {
-    // 进度条 image
     public Image m_Image;
-    // 显示的进度文字 100%
     public Text m_Text;
-    // 控制进度
+    public Text m_Speed;
     float m_CurProgressValue = 0;
-    float m_TargetProgressValue = 50; // 目标进度值
-    float m_ProgressSpeed = 1.0f; // 进度条移动速度
+    float m_TargetProgressValue = 100;
+    float m_ProgressSpeed = 1.0f;
     float progressSpeed;
 
-    private float totalScrollAmount = 0.0f; // 记录滚动总幅度
+    private float totalScrollAmount = 0.0f;
     public float ScrollOneLow = 2.0f;
     public float ScrollOneHigh = 10.0f;
+    public float ScrollTwoLow = 5.0f;
+    public float ScrollTwoHigh = 12.0f;
+    public float ScrollThreeLow = 8.0f;
+    public float ScrollThreeHigh = 18.0f;
+
+    public int Hlevel = 1;
+
+    private bool hasResetScrollAmountOne = false;
+    private bool hasResetScrollAmountTwo = false;
+
+    public Button resetButton1;
+    public Button resetButton2;
+    public Button resetButton3;
+    public Button shotButton;
+
+    public SkeletonGraphic HGirlA1;
+    public SkeletonGraphic HGirlA2;
+
 
     void Update()
     {
-        // 获取鼠标滚轮滚动输入
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        HandleGameProgress();
+    }
 
-            // 获取本次滚动的幅度并添加到总幅度上
-            totalScrollAmount += scrollInput;
-        if (scrollInput != 0) {
-            Debug.Log(totalScrollAmount);
+    private void Start()
+    {
+        // 連接按鈕事件
+        resetButton1.onClick.AddListener(ResetProgress1);
+        resetButton2.onClick.AddListener(ResetProgress2);
+        resetButton3.onClick.AddListener(ResetProgress3);
+        shotButton.onClick.AddListener(ShotSemen);
+
+    }
+
+    private void ResetProgress1() // 點擊按鈕時重置進度條並執行HandleGameProgress()
+    {
+        m_CurProgressValue = 0;
+        totalScrollAmount = 0;
+        hasResetScrollAmountOne = false;
+        hasResetScrollAmountTwo = false;
+        HandleGameProgress();
+
+        if (LevelManager.instance.golevel == 1) {
+            AllHGirlClose();
+            HGirlA1.gameObject.SetActive(true);
+        }
+    }
+
+    private void ResetProgress2() // 點擊按鈕時重置進度條並執行HandleGameProgress()
+    {
+        m_CurProgressValue = 0;
+        totalScrollAmount = 0;
+        hasResetScrollAmountOne = false;
+        hasResetScrollAmountTwo = false;
+        HandleGameProgress();
+
+        if (LevelManager.instance.golevel == 1 && Hlevel == 2)
+        {
+            AllHGirlClose();
+            HGirlA2.gameObject.SetActive(true);
+        }
+    }
+
+    private void ResetProgress3() // 點擊按鈕時重置進度條並執行HandleGameProgress()
+    {
+        m_CurProgressValue = 0;
+        totalScrollAmount = 0;
+        hasResetScrollAmountOne = false;
+        hasResetScrollAmountTwo = false;
+        HandleGameProgress();
+    }
+
+    private void ShotSemen()
+    {
+        SceneManager.LoadScene("GameMenu");
+    }
+
+    private void HandleGameProgress()
+    {
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        totalScrollAmount += scrollInput;
+        m_Speed.text = totalScrollAmount.ToString("F1");
+
+        if (scrollInput != 0)
+        {
+            Debug.Log("Total Scroll Amount: " + totalScrollAmount);
         }
 
-            // 在达到阈值时执行操作
+        if (m_CurProgressValue < 50)
+        {
+            HandleFirstPhase();
+        }
+        else if (m_CurProgressValue >= 50 && m_CurProgressValue < 75)
+        {
+            Hlevel = 2;
+            HandleSecondPhase();
+        }
+        else if (m_CurProgressValue >= 75)
+        {
+            Hlevel = 3;
+            HandleThirdPhase();
+        }
+
+        UpdateProgressValue();
+    }
+
+    private void HandleFirstPhase()     //第一階段
+    {
         if (totalScrollAmount >= ScrollOneLow && totalScrollAmount <= ScrollOneHigh)
         {
-           // 计算进度条移动的速度，根据滚轮滚动的总幅度
-           progressSpeed = m_ProgressSpeed + 2;
-           Debug.Log("找到甜蜜點");
+            progressSpeed = m_ProgressSpeed + 2;
+            m_Speed.text = "甜蜜點1";
+            Debug.Log("找到甜蜜點");
         }
         else
         {
-           progressSpeed = m_ProgressSpeed;
+            progressSpeed = m_ProgressSpeed;
         }
-        
-    
+    }
 
-        // 更新进度条的当前值
+    private void HandleSecondPhase()    //第二階段
+    {
+        if (!hasResetScrollAmountOne)
+        {
+            totalScrollAmount = 0;
+            hasResetScrollAmountOne = true;
+        }
+
+        if (totalScrollAmount >= ScrollTwoLow && totalScrollAmount <= ScrollTwoHigh)
+        {
+            progressSpeed = m_ProgressSpeed + 2;
+            m_Speed.text = "甜蜜點2";
+            Debug.Log("找到第二個甜蜜點");
+        }
+        else
+        {
+            progressSpeed = m_ProgressSpeed;
+        }
+    }
+
+    private void HandleThirdPhase()     //第三階段
+    {
+        if (!hasResetScrollAmountTwo)
+        {
+            totalScrollAmount = 0;
+            hasResetScrollAmountTwo = true;
+        }
+
+        if (totalScrollAmount >= ScrollThreeLow && totalScrollAmount <= ScrollThreeHigh)
+        {
+            progressSpeed = m_ProgressSpeed + 2;
+            m_Speed.text = "甜蜜點3";
+            Debug.Log("找到第三個甜蜜點");
+        }
+        else
+        {
+            progressSpeed = m_ProgressSpeed;
+        }
+    }
+
+    private void UpdateProgressValue()      //進度條進度
+    {
         m_CurProgressValue += progressSpeed * Time.deltaTime;
-
-        // 限制进度值在0到目标值之间
         m_CurProgressValue = Mathf.Clamp(m_CurProgressValue, 0, m_TargetProgressValue);
-
-        // 实时更新进度百分比的文本显示 
         m_Text.text = Mathf.RoundToInt(m_CurProgressValue) + "%";
-        // 实时更新滑动进度图片的fillAmount值  
-        m_Image.fillAmount = m_CurProgressValue / m_TargetProgressValue / 2;
+        m_Image.fillAmount = m_CurProgressValue / m_TargetProgressValue;
 
-        if (m_CurProgressValue == m_TargetProgressValue)
+        if (Mathf.Approximately(m_CurProgressValue, m_TargetProgressValue))
         {
             m_Text.text = "OK";
-            // 这一块可以写上场景加载的脚本
+            m_Speed.gameObject.SetActive(false);
+            shotButton.gameObject.SetActive(true);
+            // 這裡可以射邏輯
         }
+    }
+
+    private void AllHGirlClose()
+    {
+        HGirlA1.gameObject.SetActive(false);
+        HGirlA2.gameObject.SetActive(false);
     }
 }

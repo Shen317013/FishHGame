@@ -27,11 +27,11 @@ public class StoryGameManager : MonoBehaviour
     {
         string jsonFilePath = "";
 
-        if (PlayerManager.Instance.userData.level == 1)
+        if (LevelManager.instance.golevel == 1)
         {
             jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/TestStory.json");
         }
-        else if (PlayerManager.Instance.userData.level == 2)
+        else if (LevelManager.instance.golevel == 2)
         {
             jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/FristStory.json");
         }

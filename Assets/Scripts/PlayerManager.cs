@@ -45,14 +45,14 @@ public class PlayerManager : MonoBehaviour
             userData = new UserData
             {
                 language = 1,
-                level = 1,
+                level = 0,
                 fishtime = 0f
             };
         }
 
  
         userData.language = 1;
-        userData.level = 2;
+        userData.level = 0;
         userData.fishtime = 0f;
 
         if (userData.language == 1)
@@ -84,6 +84,6 @@ public class PlayerManager : MonoBehaviour
 public class UserData
 {
     public int language = 1;
-    public int level = 1;
+    public int level = 0;
     public float fishtime = 0f;
 }

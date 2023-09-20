@@ -13,9 +13,14 @@ public class LevelDataLoad : MonoBehaviour
     public float countdownTime = 0f; // 倒數計時
     private bool isGameOver = false; // 遊戲失敗判定
     public GameObject Win;
+    public Button WinButton;
+    public GameObject WinBtn;
+    private IEnumerator countdownCoroutine;
 
     private void Start()
     {
+        WinButton.onClick.AddListener(WinGame);
+
         // 從PlayerPrefs讀取魚的數量並更新
         playerFish += PlayerPrefs.GetInt("PlayerFish", 0);
 
@@ -39,7 +44,9 @@ public class LevelDataLoad : MonoBehaviour
                 // 更新 playerfish 文本组件的值
                 playerFishText.text = playerFish.ToString();
 
-                StartCoroutine(Countdown()); //開始倒數時
+                // 開始倒數時，存儲倒數協程
+                countdownCoroutine = Countdown();
+                StartCoroutine(countdownCoroutine);
 
                 // 檢查獲勝條件
                 if (playerFish >= requiredFish)
@@ -51,6 +58,28 @@ public class LevelDataLoad : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void Victory()
+    {
+        isGameOver = true;
+        Debug.Log("遊戲勝利");
+        if (LevelManager.instance.golevel == 1 && PlayerManager.Instance.userData.level < 1)
+        {
+
+            PlayerManager.Instance.userData.level = 1;
+
+            PlayerManager.Instance.SaveUserData();
+        }
+
+        // 停止倒數計時協程
+        if (countdownCoroutine != null)
+        {
+            StopCoroutine(countdownCoroutine);
+        }
+
+        Win.SetActive(true);
+        WinBtn.SetActive(true);
     }
 
     private IEnumerator Countdown()
@@ -69,17 +98,15 @@ public class LevelDataLoad : MonoBehaviour
         }
     }
 
-    private void Victory()
-    {
-        isGameOver = true;
-        Debug.Log("遊戲勝利");
-        Win.SetActive(true);
-    }
-
     private void Failure()
     {
         isGameOver = true;
         Debug.Log("遊戲失敗");
+    }
+
+    private void WinGame()
+    {
+        SceneManager.LoadScene("HGame");
     }
 }
 

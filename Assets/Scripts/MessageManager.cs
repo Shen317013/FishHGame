@@ -24,11 +24,11 @@ public class MessageManager : MonoBehaviour
     {
         string jsonFilePath = "";
 
-        if (PlayerManager.Instance.userData.level == 1)
+        if (LevelManager.instance.golevel == 1)
         {
             jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/TestMessage.json");
         }
-        else if (PlayerManager.Instance.userData.level == 2)
+        else if (LevelManager.instance.golevel == 2)
         {
             jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/FristMessage.json");
         }
