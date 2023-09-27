@@ -92,6 +92,7 @@ public class HGame : MonoBehaviour
 
     private void ShotSemen()
     {
+        LevelManager.instance.golevel = 0;
         SceneManager.LoadScene("GameMenu");
     }
 

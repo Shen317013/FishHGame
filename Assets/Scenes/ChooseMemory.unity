@@ -1614,7 +1614,7 @@ GameObject:
   - component: {fileID: 957930545}
   - component: {fileID: 957930544}
   m_Layer: 5
-  m_Name: Choose
+  m_Name: Memory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3028,7 +3028,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2096218099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c9febbb72f0c74b935fc28a7d2582c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d84221551434964cb209228e894350a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HGirlButton1: {fileID: 957655389}

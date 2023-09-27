@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HGame.unity
     guid: a9d62c53237899244bf7f39026eec024
+  - enabled: 1
+    path: Assets/Scenes/ChooseMemory.unity
+    guid: 06793c5b07eaa6b4b89ae37bff5d95fd
   m_configObjects: {}

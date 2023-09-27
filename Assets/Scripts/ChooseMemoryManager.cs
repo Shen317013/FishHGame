@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ChooseGameManager : MonoBehaviour
+public class ChooseMemoryManager : MonoBehaviour
 {
     public Button HGirlButton1;
     public Button HGirlButton2;
@@ -59,25 +59,25 @@ public class ChooseGameManager : MonoBehaviour
     private void LoadOneMemory()
     {
         LevelManager.instance.golevel = 1;
-        SceneManager.LoadScene("RoleStory");
+        SceneManager.LoadScene("HGame");
     }
 
     private void LoadTwoMemory()
     {
         LevelManager.instance.golevel = 2;
-        SceneManager.LoadScene("RoleStory");
+        SceneManager.LoadScene("HGame");
     }
 
     private void LoadThreeMemory()
     {
         LevelManager.instance.golevel = 3;
-        SceneManager.LoadScene("RoleStory");
+        SceneManager.LoadScene("HGame");
     }
 
     private void LoadFourMemory()
     {
         LevelManager.instance.golevel = 4;
-        SceneManager.LoadScene("RoleStory");
+        SceneManager.LoadScene("HGame");
     }
 
     private void LoadSceneGameMenu()
@@ -97,5 +97,6 @@ public class ChooseGameManager : MonoBehaviour
         LockHGirlButton3.gameObject.SetActive(true);
         LockHGirlButton4.gameObject.SetActive(true);
     }
+
 
 }
