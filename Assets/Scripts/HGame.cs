@@ -36,10 +36,13 @@ public class HGame : MonoBehaviour
     public SkeletonGraphic HGirlA1;
     public SkeletonGraphic HGirlA2;
 
+    public int Hstage = 0;
+
 
     void Update()
     {
         HandleGameProgress();
+        HandleGameButton();
     }
 
     private void Start()
@@ -92,11 +95,34 @@ public class HGame : MonoBehaviour
 
     private void ShotSemen()
     {
-        LevelManager.instance.golevel = 0;
-        SceneManager.LoadScene("GameMenu");
+        //   LevelManager.instance.golevel = 0;
+        Hstage = 0;
+        SceneManager.LoadScene("EndMessage");
     }
 
-    private void HandleGameProgress()
+    private void HandleGameButton()
+    {
+        if (Hstage == 0)
+        {
+            resetButton1.gameObject.SetActive(true);
+            resetButton2.gameObject.SetActive(false);
+            resetButton3.gameObject.SetActive(false);
+        }
+        else if (Hstage == 1)
+        {
+            resetButton1.gameObject.SetActive(true);
+            resetButton2.gameObject.SetActive(true);
+            resetButton3.gameObject.SetActive(false);
+        }
+        else if (Hstage == 2)
+        {
+            resetButton1.gameObject.SetActive(true);
+            resetButton2.gameObject.SetActive(true);
+            resetButton3.gameObject.SetActive(true);
+        }
+    }
+
+        private void HandleGameProgress()
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         totalScrollAmount += scrollInput;
@@ -186,12 +212,20 @@ public class HGame : MonoBehaviour
         m_Text.text = Mathf.RoundToInt(m_CurProgressValue) + "%";
         m_Image.fillAmount = m_CurProgressValue / m_TargetProgressValue;
 
-        if (Mathf.Approximately(m_CurProgressValue, m_TargetProgressValue))
+        if (Mathf.Approximately(m_CurProgressValue, m_TargetProgressValue) && Hstage > 1)
         {
             m_Text.text = "OK";
             m_Speed.gameObject.SetActive(false);
             shotButton.gameObject.SetActive(true);
             // 這裡可以射邏輯
+        } else if (Mathf.Approximately(m_CurProgressValue, m_TargetProgressValue))
+        {
+            m_CurProgressValue = 0;
+            totalScrollAmount = 0;
+            hasResetScrollAmountOne = false;
+            hasResetScrollAmountTwo = false;
+            Hstage++;
+            HandleGameProgress();
         }
     }
 

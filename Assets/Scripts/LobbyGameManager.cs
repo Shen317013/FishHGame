@@ -47,5 +47,8 @@ public class LobbyGameManager : MonoBehaviour
     public void ResetGame()
     {
         PlayerPrefs.SetInt("PlayerFish", 0);
+        PlayerManager.Instance.userData.level = 0;
+
+        PlayerManager.Instance.SaveUserData();
     }
 }

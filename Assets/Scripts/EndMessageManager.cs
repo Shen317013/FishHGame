@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -8,7 +8,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using System.Text;
 
-public class MessageManager : MonoBehaviour
+public class EndMessageManager : MonoBehaviour
 {
     public Text nameText;
     public Text contentText;
@@ -28,11 +28,11 @@ public class MessageManager : MonoBehaviour
 
         if (LevelManager.instance.golevel == 1)
         {
-            jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/TestMessage.json");
+            jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/TestEndMessage.json");
         }
         else if (LevelManager.instance.golevel == 2)
         {
-            jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/FristMessage.json");
+            jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/FristEndMessage.json");
         }
 
         if (File.Exists(jsonFilePath))
@@ -119,13 +119,15 @@ public class MessageManager : MonoBehaviour
         else
         {
             Debug.Log("Reached end of JSON data.");
-            SceneManager.LoadScene("FishingChoose");
+            LevelManager.instance.golevel = 0;
+            SceneManager.LoadScene("GameMenu");
         }
     }
 
     void SkipButtonClicked()
     {
-          SceneManager.LoadScene("FishingChoose");
+        LevelManager.instance.golevel = 0;
+        SceneManager.LoadScene("GameMenu");
     }
 
     [System.Serializable]

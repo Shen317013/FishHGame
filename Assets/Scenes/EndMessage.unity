@@ -846,7 +846,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1109229052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa35beae4e6dc74fa5b770bf089b33d, type: 3}
+  m_Script: {fileID: 11500000, guid: 24630574515d92c4f8bf6ff417205433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 1531220885}
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 1456971838}
   - component: {fileID: 1456971837}
   m_Layer: 5
-  m_Name: Message
+  m_Name: EndMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

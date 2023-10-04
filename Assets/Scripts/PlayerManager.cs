@@ -50,10 +50,6 @@ public class PlayerManager : MonoBehaviour
             };
         }
 
- 
-        userData.language = 1;
-        userData.level = 0;
-        userData.fishtime = 0f;
 
         if (userData.language == 1)
         {

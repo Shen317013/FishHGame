@@ -34,24 +34,40 @@ public class ChooseGameManager : MonoBehaviour
 
     private void LoadStart()
     {
-        if (PlayerManager.Instance.userData.level == 1)
+        if (PlayerManager.Instance.userData.level == 0)
         {
             AllHGirlButtonClose();
+            LockHGirlButton1.gameObject.SetActive(false);
             HGirlButton1.gameObject.SetActive(true);
+        }
+        else if (PlayerManager.Instance.userData.level == 1)
+        {
+            AllHGirlButtonClose();
+            LockHGirlButton1.gameObject.SetActive(false);
+            HGirlButton1.gameObject.SetActive(true);
+            LockHGirlButton2.gameObject.SetActive(false);
+            HGirlButton2.gameObject.SetActive(true);
         }
         else if (PlayerManager.Instance.userData.level == 2)
         {
             AllHGirlButtonClose();
+            LockHGirlButton1.gameObject.SetActive(false);
+            HGirlButton1.gameObject.SetActive(true);
+            LockHGirlButton2.gameObject.SetActive(false);
             HGirlButton2.gameObject.SetActive(true);
+            LockHGirlButton3.gameObject.SetActive(false);
+            HGirlButton3.gameObject.SetActive(true);
         }
         else if (PlayerManager.Instance.userData.level == 3)
         {
             AllHGirlButtonClose();
+            LockHGirlButton1.gameObject.SetActive(false);
+            HGirlButton1.gameObject.SetActive(true);
+            LockHGirlButton2.gameObject.SetActive(false);
+            HGirlButton2.gameObject.SetActive(true);
+            LockHGirlButton3.gameObject.SetActive(false);
             HGirlButton3.gameObject.SetActive(true);
-        }
-        else if (PlayerManager.Instance.userData.level == 4)
-        {
-            AllHGirlButtonClose();
+            LockHGirlButton4.gameObject.SetActive(false);
             HGirlButton4.gameObject.SetActive(true);
         }
     }
