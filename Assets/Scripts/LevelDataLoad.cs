@@ -22,7 +22,7 @@ public class LevelDataLoad : MonoBehaviour
         WinButton.onClick.AddListener(WinGame);
 
         // 從PlayerPrefs讀取魚的數量並更新
-        playerFish += PlayerPrefs.GetInt("PlayerFish", 0);
+        playerFish = PlayerManager.Instance.userData.fish;
 
         string jsonFilePath = Path.Combine(Application.streamingAssetsPath, "Json/LevelData.json");
         string json = File.ReadAllText(jsonFilePath);
@@ -69,7 +69,7 @@ public class LevelDataLoad : MonoBehaviour
 
             PlayerManager.Instance.userData.level = 1;
 
-            PlayerManager.Instance.SaveUserData();
+     //       PlayerManager.Instance.SaveUserData();
         }
 
         // 停止倒數計時協程

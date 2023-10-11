@@ -34,6 +34,23 @@ public class LobbyGameManager : MonoBehaviour
         GameMenu.SetActive(true);
     }
 
+    public void OnBtnSaveClick()
+    {
+        // 保存UserData
+        PlayerManager.Instance.SaveUserData();
+    }
+
+    public void OnBtnLoadClick()
+    {
+        PlayerManager.Instance.LoadUserData();
+        OnBtnLoadBackClick();
+    }
+
+    public void OnBtnDeleteClick()
+    {
+        PlayerManager.Instance.DeleteUserData();
+    }
+
     public void LoadSceneChooseRole()
     {
         SceneManager.LoadScene("ChooseRole");
@@ -46,7 +63,7 @@ public class LobbyGameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        PlayerPrefs.SetInt("PlayerFish", 0);
+        PlayerManager.Instance.userData.fish = 0;
         PlayerManager.Instance.userData.level = 0;
 
         PlayerManager.Instance.SaveUserData();

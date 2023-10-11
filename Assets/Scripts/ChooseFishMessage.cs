@@ -26,10 +26,14 @@ public class ChooseFishMessage : MonoBehaviour
 
     private bool isSpecialButtonActive = false; //大魚訊出現偵測
 
+    public Button BackButton;
+
     private void Start()
     {
         StartCoroutine(SpawnButtonsCoroutine());
         StartCoroutine(SpawnSpecialButtonCoroutine());
+
+        BackButton.onClick.AddListener(LoadSceneGameMenu);
     }
 
     private IEnumerator SpawnButtonsCoroutine()
@@ -135,7 +139,12 @@ public class ChooseFishMessage : MonoBehaviour
     {
         float countdownTime = FindObjectOfType<LevelDataLoad>().countdownTime;
         PlayerManager.Instance.userData.fishtime = countdownTime;
-        PlayerManager.Instance.SaveUserData();
+//        PlayerManager.Instance.SaveUserData();
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void LoadSceneGameMenu()
+    {
+        SceneManager.LoadScene("GameMenu");
     }
 }

@@ -38,6 +38,8 @@ public class HGame : MonoBehaviour
 
     public int Hstage = 0;
 
+    public Button BackButton;
+
 
     void Update()
     {
@@ -52,6 +54,7 @@ public class HGame : MonoBehaviour
         resetButton2.onClick.AddListener(ResetProgress2);
         resetButton3.onClick.AddListener(ResetProgress3);
         shotButton.onClick.AddListener(ShotSemen);
+        BackButton.onClick.AddListener(LoadSceneGameMenu);
 
     }
 
@@ -233,5 +236,10 @@ public class HGame : MonoBehaviour
     {
         HGirlA1.gameObject.SetActive(false);
         HGirlA2.gameObject.SetActive(false);
+    }
+
+    private void LoadSceneGameMenu()
+    {
+        SceneManager.LoadScene("GameMenu");
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,23 +32,13 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-
-        if (PlayerPrefs.HasKey("userData"))
+        userData = new UserData
         {
-
-            string jsonData = PlayerPrefs.GetString("userData");
-            userData = JsonUtility.FromJson<UserData>(jsonData);
-        }
-        else
-        {
-
-            userData = new UserData
-            {
-                language = 1,
-                level = 0,
-                fishtime = 0f
-            };
-        }
+            language = 1,
+            level = 0,
+            fishtime = 0f,
+            fish = 0
+        };
 
 
         if (userData.language == 1)
@@ -60,9 +50,7 @@ public class PlayerManager : MonoBehaviour
             LanguageManager.Instance.SetLanguage("ch");
         }
 
-        string updatedJsonData = JsonUtility.ToJson(userData);
-        PlayerPrefs.SetString("userData", updatedJsonData);
-        PlayerPrefs.Save();
+
     }
 
     public void SaveUserData()
@@ -70,6 +58,20 @@ public class PlayerManager : MonoBehaviour
         string updatedJsonData = JsonUtility.ToJson(userData);
         PlayerPrefs.SetString("userData", updatedJsonData);
         PlayerPrefs.Save();
+    }
+
+    public void LoadUserData()
+    {
+        string jsonData = PlayerPrefs.GetString("userData");
+        userData = JsonUtility.FromJson<UserData>(jsonData);
+    }
+
+    public void DeleteUserData()
+    {
+        // 删除UserData存档
+        PlayerPrefs.DeleteKey("userData");
+        // 重置UserData
+        userData = new UserData();
     }
 
 }
@@ -82,4 +84,5 @@ public class UserData
     public int language = 1;
     public int level = 0;
     public float fishtime = 0f;
+    public int fish = 0;
 }

@@ -141,7 +141,7 @@ public class BigFishGame : MonoBehaviour
         isGameActive = false;
         Debug.Log("遊戲勝利");
 
-        PlayerPrefs.SetInt("PlayerFish", PlayerPrefs.GetInt("PlayerFish", 0) + 5);
+        PlayerManager.Instance.userData.fish += 5;
         SceneManager.LoadScene("FishingChoose");
     }
 
