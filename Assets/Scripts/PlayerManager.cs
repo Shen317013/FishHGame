@@ -37,10 +37,13 @@ public class PlayerManager : MonoBehaviour
             language = 1,
             level = 0,
             fishtime = 0f,
-            fish = 0
+            fish = 0,
+            screen = 1
         };
+    }
 
-
+    private void Update()
+    {
         if (userData.language == 1)
         {
             LanguageManager.Instance.SetLanguage("en");
@@ -50,7 +53,14 @@ public class PlayerManager : MonoBehaviour
             LanguageManager.Instance.SetLanguage("ch");
         }
 
-
+        if (userData.screen == 1)
+        {
+            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
+        }
+        else if (userData.screen == 2)
+        {
+            Screen.SetResolution(1920, 1080, false);
+        }
     }
 
     public void SaveUserData()
@@ -85,4 +95,5 @@ public class UserData
     public int level = 0;
     public float fishtime = 0f;
     public int fish = 0;
+    public int screen = 1;
 }
