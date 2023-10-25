@@ -47,6 +47,9 @@ public class AudioManager : MonoBehaviour
     public void ToggleSound()
     {
         isSoundOn = !isSoundOn;
-        soundSource.enabled = isSoundOn;
+
+        // 使用 PlayerPrefs 保存音效偏好设置
+        PlayerPrefs.SetInt("SoundOn", isSoundOn ? 1 : 0);
+        PlayerPrefs.Save(); // 保存设置
     }
 }
