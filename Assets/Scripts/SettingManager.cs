@@ -9,6 +9,7 @@ public class SettingManager : MonoBehaviour
     public Text TxtLanguage;
     public Text TxtScreen;
 
+    private BgmManager bgmManager;
     private AudioManager audioManager; // 用于存储对 AudioManager 的引用
     public GameObject BgmOff;
     public GameObject BgmOn;
@@ -60,6 +61,25 @@ public class SettingManager : MonoBehaviour
         // 获取 SoundOn 和 SoundOff 状态
         int soundOnValue = PlayerPrefs.GetInt("SoundOn", 1); // 默认值为1
 
+        // 在 Start 方法中查找 AudioManager 并引用它
+        bgmManager = FindObjectOfType<BgmManager>();
+
+        // 获取 BgmOn 和 BgmOff 状态
+        int bgmOnValue = PlayerPrefs.GetInt("BgmOn", 1); // 默认值为1
+
+        // 根据存储的值设置 BgmOn 和 BgmOff 游戏对象的状态
+        if (bgmOnValue == 1)
+        {
+            BgmOn.SetActive(true);
+            BgmOff.SetActive(false);
+        }
+        else
+        {
+            BgmOff.SetActive(true);
+            BgmOn.SetActive(false);
+        }
+
+
         // 根据存储的值设置 SoundOn 和 SoundOff 游戏对象的状态
         if (soundOnValue == 1)
         {
@@ -72,6 +92,7 @@ public class SettingManager : MonoBehaviour
             SoundOn.SetActive(false);
         }
     }
+
 
     // 在 OnBtnLanguageClick 方法中调用 SetLanguageAndRefreshText
     public void OnBtnLanguageClick()
@@ -117,6 +138,18 @@ public class SettingManager : MonoBehaviour
         }
     }
 
+    public void ToggleBgm()
+    {
+        if (bgmManager != null)
+        {
+            bgmManager.ToggleBgm();
+        }
+        else
+        {
+            Debug.LogWarning("BgmManager not found.");
+        }
+    }
+
     public void OnBtnSoundOnClick()
     {
         SoundOff.SetActive(true);
@@ -127,5 +160,17 @@ public class SettingManager : MonoBehaviour
     {
         SoundOn.SetActive(true);
         SoundOff.SetActive(false);
+    }
+
+    public void OnBtnBgmOnClick()
+    {
+        BgmOff.SetActive(true);
+        BgmOn.SetActive(false);
+    }
+
+    public void OnBtnBgmOffClick()
+    {
+        BgmOn.SetActive(true);
+        BgmOff.SetActive(false);
     }
 }

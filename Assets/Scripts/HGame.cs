@@ -14,6 +14,7 @@ public class HGame : MonoBehaviour
     float m_TargetProgressValue = 100;
     float m_ProgressSpeed = 1.0f;
     float progressSpeed;
+    public float newSpeed = 1.5f;
 
     private float totalScrollAmount = 0.0f;
     public float ScrollOneLow = 2.0f;
@@ -35,6 +36,7 @@ public class HGame : MonoBehaviour
 
     public SkeletonGraphic HGirlA1;
     public SkeletonGraphic HGirlA2;
+
 
     public int Hstage = 0;
 
@@ -161,6 +163,9 @@ public class HGame : MonoBehaviour
             progressSpeed = m_ProgressSpeed + 2;
             m_Speed.text = "甜蜜點1";
             Debug.Log("找到甜蜜點");
+            Spine.AnimationState animationState = HGirlA1.AnimationState;
+            animationState.TimeScale = newSpeed;
+
         }
         else
         {
